@@ -14,25 +14,29 @@ class _CreateProfileState extends State<CreateProfile> {
   final _formKey = GlobalKey<FormState>();
 
   late String _name;
-  late String _email;
-  late String _phone;
+ // late String _email;
+ // late String _phone;
   late String _description;
-  late String _age;
+ // late String _age;
   late String _class;
-  late String _city;
+ // late String _city;
   File? _image;
 
   Future<void> _uploadData() async {
+    if(_image == null){
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Select Image')));
+    }
     if (_formKey.currentState!.validate()) {
       context.read<CreateProfileBloc>().add(
             UserProfileSubmitEvent(
               name: _name,
-              email: _email,
-              phone: _phone,
+           //   email: _email,
+            //  phone: _phone,
               description: _description,
-              age: _age,
+            //  age: _age,
               classValue: _class,
-              city: _city,
+            //  city: _city,
               image: _image,
             ),
           );
@@ -44,14 +48,21 @@ class _CreateProfileState extends State<CreateProfile> {
     return Scaffold(
       backgroundColor: Color(0xffFFE3D3),
       appBar: AppBar(
+        foregroundColor: Colors.white,
         title: Text('Create Profile'),
         backgroundColor: Color(0xffAF4748),
-        actions: [IconButton(onPressed: (){
-          final FirebaseService _firebaseService = FirebaseService();
-          _firebaseService.signOut();
-          Navigator.pushReplacementNamed(context, '/');
-
-        }, icon: Icon(Icons.logout)), SizedBox(width: 10,)],
+        actions: [
+          IconButton(
+              onPressed: () async {
+                final FirebaseService _firebaseService = FirebaseService();
+                await _firebaseService.signOut();
+                Navigator.pushReplacementNamed(context, '/');
+              },
+              icon: Icon(Icons.logout)),
+          SizedBox(
+            width: 10,
+          )
+        ],
       ),
       body: BlocConsumer<CreateProfileBloc, UserProfileState>(
         listener: (context, state) {
@@ -93,7 +104,8 @@ class _CreateProfileState extends State<CreateProfile> {
                             height: 120,
                             width: 120,
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle, color: Color(0xffAF4748)),
+                                shape: BoxShape.circle,
+                                color: Color(0xffAF4748)),
                             child: _image != null
                                 ? Image.file(
                                     _image!,
@@ -102,7 +114,7 @@ class _CreateProfileState extends State<CreateProfile> {
                                 : Icon(
                                     Icons.camera_alt,
                                     size: 50,
-                              color: Color(0xffFFE3D3),
+                                    color: Color(0xffFFE3D3),
                                   )),
                       ),
                     ),
@@ -117,7 +129,7 @@ class _CreateProfileState extends State<CreateProfile> {
                       },
                       onChanged: (value) => _name = value,
                     ),
-                    TextFormField(
+                   /* TextFormField(
                       decoration: InputDecoration(labelText: 'Email'),
                       validator: (value) {
                         if (value == null ||
@@ -138,7 +150,7 @@ class _CreateProfileState extends State<CreateProfile> {
                         return null;
                       },
                       onChanged: (value) => _phone = value,
-                    ),
+                    ),*/
                     TextFormField(
                       decoration: InputDecoration(labelText: 'Description'),
                       validator: (value) {
@@ -149,16 +161,16 @@ class _CreateProfileState extends State<CreateProfile> {
                       },
                       onChanged: (value) => _description = value,
                     ),
-                    TextFormField(
-                      decoration: InputDecoration(labelText: 'Age'),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your age';
-                        }
-                        return null;
-                      },
-                      onChanged: (value) => _age = value,
-                    ),
+                    // TextFormField(
+                    //   decoration: InputDecoration(labelText: 'Age'),
+                    //   validator: (value) {
+                    //     if (value == null || value.isEmpty) {
+                    //       return 'Please enter your age';
+                    //     }
+                    //     return null;
+                    //   },
+                    //   onChanged: (value) => _age = value,
+                    // ),
                     TextFormField(
                       decoration: InputDecoration(labelText: 'Class'),
                       validator: (value) {
@@ -169,16 +181,16 @@ class _CreateProfileState extends State<CreateProfile> {
                       },
                       onChanged: (value) => _class = value,
                     ),
-                    TextFormField(
-                      decoration: InputDecoration(labelText: 'City'),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your city';
-                        }
-                        return null;
-                      },
-                      onChanged: (value) => _city = value,
-                    ),
+                    // TextFormField(
+                    //   decoration: InputDecoration(labelText: 'City'),
+                    //   validator: (value) {
+                    //     if (value == null || value.isEmpty) {
+                    //       return 'Please enter your city';
+                    //     }
+                    //     return null;
+                    //   },
+                    //   onChanged: (value) => _city = value,
+                    // ),
                     SizedBox(height: 20),
                     Container(
                       decoration: BoxDecoration(

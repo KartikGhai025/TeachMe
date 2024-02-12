@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/subjectList_bloc/subjectList_bloc.dart';
-import '../../bloc/video_bloc/video_bloc.dart';
 import '../pages/videoList.dart';
 
 class SubjectList extends StatelessWidget {
@@ -59,11 +58,8 @@ class SubjectList extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => BlocProvider.value(
-                                      value: VideoBloc(),
-                                      child: VideoListPage(
-                                          subject: state.subjectLists[index]),
-                                    )));
+                                    builder: (_) => VideoListPage(
+                                        subject: state.subjectLists[index])));
                           },
                         ),
                       ),

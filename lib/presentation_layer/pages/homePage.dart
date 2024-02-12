@@ -4,6 +4,7 @@ import '../../bloc/auth_bloc/auth_bloc.dart';
 import '../View/studentProfileView.dart';
 import '../View/subjectList.dart';
 import '../View/liveclassAndNotificationButton.dart';
+import 'drawer.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -15,9 +16,13 @@ class HomePage extends StatelessWidget {
 
 
     return Scaffold(
+      drawer: AppDrawer(),
       appBar: AppBar(
-        toolbarHeight: 0,
+        foregroundColor: Color(0xffFFE3D3),
+    title: Text('TeachMe'),
+    //    toolbarHeight: 0,
         backgroundColor: Color(0xffAF4748),
+
       ),
       body: Container(
         color: Color(0xffAF4748),

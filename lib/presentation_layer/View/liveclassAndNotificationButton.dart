@@ -20,7 +20,7 @@ class LiveclassAndNotification extends StatelessWidget {
               onTap: () {
 
 
-                final Video video= Video(title: 'Live', id: 'P9C25Un7xaM');
+                final Video video= Video(title: 'Live', id: '6stlCkUDG_s');
 
                 Navigator.push(
                     context,

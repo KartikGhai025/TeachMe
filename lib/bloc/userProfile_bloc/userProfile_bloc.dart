@@ -14,7 +14,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         final Student student = await userRepository.getUserProfile();
         emit(ProfileFetchedState(student));
       } catch (error) {
-        emit(SubjectListErrorState());
+        emit(ProfileErrorState());
       }
     });
   }

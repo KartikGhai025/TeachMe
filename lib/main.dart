@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,6 +45,7 @@ class MyApp extends StatelessWidget {
           BlocProvider<VideoBloc>(
             create: (context) => VideoBloc(),
           ),
+
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -85,29 +85,3 @@ class AddData extends StatelessWidget {
   }
 }
 
-
-/*
-try {
-await FirebaseFirestore.instance
-    .collection('videos')
-    .doc('Science')
-    .set({
-'videos': {
-'0': [
-'Chemical Reactions and Equations',
-'https://www.youtube.com/watch?v=43G7DnxgJCI'
-],
-'1': [
-'Control and Coordination',
-'https://www.youtube.com/watch?v=6GQqmzap6Aw'
-],
-'2': [
-'Electricity One Shot Revision',
-'https://www.youtube.com/watch?v=XfehrU2qLW8'
-],
-
-}
-});
-} catch (error) {
-print('Error adding user profile: $error');
-}*/

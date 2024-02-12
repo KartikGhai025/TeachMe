@@ -2,21 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teach_me/bloc/video_bloc/video_bloc.dart';
 import 'package:teach_me/presentation_layer/pages/videoPage.dart';
+import '../../data_layer/Entities/video.dart';
 
-class VideoListPage extends StatelessWidget {
+class VideoListPage extends StatefulWidget {
   final String subject;
 
   const VideoListPage({super.key, required this.subject});
 
   @override
+  State<VideoListPage> createState() => _VideoListPageState();
+}
+
+class _VideoListPageState extends State<VideoListPage> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    final videoBloc = context.read<VideoBloc>();
+
+    if (!videoBloc.videoStates.containsKey(widget.subject)) {
+      videoBloc.add(FetchVideotListEvent(subject: widget.subject));
+
+
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final videoBloc = BlocProvider.of<VideoBloc>(context);
-    videoBloc.add(FetchVideotListEvent(subject));
+   // final videoBloc = BlocProvider.of<VideoBloc>(context);
+    //videoBloc.add(FetchVideotListEvent(subject:widget.subject));
 
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Color(0xffFFE3D3),
         backgroundColor: Color(0xffAF4748),
-        title: Text(subject),
+        title: Text(widget.subject),
       ),
       body: Scaffold(
         body: Container(
@@ -31,11 +53,15 @@ class VideoListPage extends StatelessWidget {
               ),
               BlocBuilder<VideoBloc, VideoState>(builder: (context, state) {
                 if (state is VideoListFetchedState) {
+                  final videoBloc = context.read<VideoBloc>();
+
+                  if (videoBloc.videoStates.containsKey(widget.subject)) {
+                    List<Video> videoLists= videoBloc.videoStates[widget.subject]!;
                   return ListView.builder(
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    itemCount: state.videoLists.length,
+                    itemCount: videoLists.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(
@@ -52,7 +78,7 @@ class VideoListPage extends StatelessWidget {
                             child: Center(
                               child: ListTile(
                                 title: Text(
-                                  state.videoLists[index].title,
+                                  videoLists[index].title,
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -70,8 +96,9 @@ class VideoListPage extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => VideoPlayer(
-                                                video: state.videoLists[index],
+                                          builder: (context) =>
+                                              VideoPlayer(
+                                                video: videoLists[index],
                                               )));
                                 },
                               ),
@@ -80,10 +107,11 @@ class VideoListPage extends StatelessWidget {
                         ),
                       );
                     },
-                  );
-                } else
+                  );}
+                }
+
                   return Container();
-              }),
+              } ),
             ])),
       ),
     );

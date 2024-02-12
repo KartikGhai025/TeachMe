@@ -5,7 +5,7 @@ sealed class VideoEvent {}
 class FetchVideotListEvent extends VideoEvent {
   final String subject;
 
-  FetchVideotListEvent(this.subject);
+  FetchVideotListEvent({required  this.subject});
 
 
 }

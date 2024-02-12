@@ -12,4 +12,4 @@ final class ProfileFetchedState extends ProfileState {
   ProfileFetchedState(this.student);
 }
 
-final class SubjectListErrorState extends ProfileState {}
+final class ProfileErrorState extends ProfileState {}

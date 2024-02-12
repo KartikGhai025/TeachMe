@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:teach_me/bloc/auth_bloc/auth_bloc.dart';
+import 'package:teach_me/presentation_layer/pages/cancellation_refund_policy.dart';
+import 'package:teach_me/presentation_layer/pages/contact_us_page.dart';
+import 'package:teach_me/presentation_layer/pages/privacy_policy_page.dart';
+import 'package:teach_me/presentation_layer/pages/terms_conditions_page.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -22,7 +26,7 @@ class LoginPage extends StatelessWidget {
               height: size.height,
               child: Image.asset(
                 'assets/loginpage_bg.png',
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.cover,
               ),
             ),
             Column(
@@ -96,7 +100,9 @@ class LoginPage extends StatelessWidget {
                       builder: (context, state) {
                         if (state is AuthLoading) {
                           return Center(
-                            child: CircularProgressIndicator(),
+                            child: CircularProgressIndicator(
+                              color: Colors.blue,
+                            ),
                           );
                         } else {
                           return Container(
@@ -153,6 +159,31 @@ class LoginPage extends StatelessWidget {
                       },
                     ),
                   ),
+                  Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>TermsConditionsPage()));
+                      }, child: Text('Terms and Conditions')),
+                      Text('|'),
+                      TextButton(onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>PrivacyPolicyPage()));
+                      }, child: Text('Privacy Policy'))
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>CancellationRefundPolicyPage()));
+                      }, child: Text('Cancellation/Refund Policies')),
+                      Text('|'),
+                      TextButton(onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>ContactUsPage()));
+                      }, child: Text('Contact Us'))
+                    ],
+                  )
                 ],
               ),
             )

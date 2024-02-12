@@ -116,26 +116,26 @@ class FirebaseService {
 
   Future<void> addUserProfile(
     String name,
-    String email,
-    String phone,
+  //  String email,
+   // String phone,
     String imageUrl,
     String description,
-    String age,
+   // String age,
     String classValue,
-    String city,
+ //   String city,
   ) async {
     try {
       String id = _auth.currentUser!.uid;
 
       await _firestore.collection('userProfile').doc(id).set({
         'name': name,
-        'email': email,
-        'phone': phone,
+      //  'email': email,
+      //  'phone': phone,
         'image_url': imageUrl,
         'description': description,
-        'age': age,
+       // 'age': age,
         'class': classValue,
-        'city': city,
+      //  'city': city,
       });
     } catch (error) {
       log('Error adding user profile: $error');

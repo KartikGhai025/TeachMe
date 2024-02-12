@@ -1,9 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:teach_me/data_layer/Entities/student.dart';
-
 import '../Entities/user.dart';
 import '../Services/firebase_service.dart';
 
@@ -59,16 +57,24 @@ class UserRepository {
   }
 
   Future<void> addUserProfile(
-      String name,
-      String email,
-      String phone,
-      String image_url,
-      String description,
-      String age,
-      String classValue,
-      String city,
-      ) async {
+    String name,
+    // String email,
+    // String phone,
+    String image_url,
+    String description,
+    // String age,
+    String classValue,
+   // String city,
+  ) async {
     await _firebaseService.addUserProfile(
-        name, email, phone, image_url, description, age, classValue, city);
+      name,
+     // email,
+     // phone,
+      image_url,
+      description,
+      //age,
+      classValue,
+   //   city
+    );
   }
 }

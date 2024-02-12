@@ -21,7 +21,7 @@ class StudentProfileView extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     foregroundImage: NetworkImage(state.student.image_url),
-                    radius: 80,
+                    radius: MediaQuery.of(context).size.width *0.18,
                   ),
                   SizedBox(width: 20),
                   Expanded(
@@ -44,7 +44,7 @@ class StudentProfileView extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                            Text(
+                         /*   Text(
                               ' (${state.student.age})',
                               textAlign: TextAlign.end,
                               style: GoogleFonts.shadowsIntoLight(
@@ -53,7 +53,7 @@ class StudentProfileView extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xffe6ae79),
                               ),
-                            )
+                            )*/
                           ],
                         ),
                         SizedBox(height: 4),
@@ -67,7 +67,7 @@ class StudentProfileView extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 4),
-                        Text(
+                  /*      Text(
                           state.student.email,
                           textAlign: TextAlign.end,
                           style: GoogleFonts.poppins(
@@ -75,9 +75,9 @@ class StudentProfileView extends StatelessWidget {
                             fontStyle: FontStyle.italic,
                             color: Color(0xfff8e8d8),
                           ),
-                        ),
+                        ),*/
                         SizedBox(height: 4),
-                        Row(
+                     /*   Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Expanded(
@@ -108,7 +108,7 @@ class StudentProfileView extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 4),
+                        SizedBox(height: 4),*/
                       ],
                     ),
                   ),

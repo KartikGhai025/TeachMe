@@ -4,23 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/subjectList_bloc/subjectList_bloc.dart';
 
 class NotificationPage extends StatelessWidget {
-  final List<String> notifications = [
-    'Your assignment is due tomorrow.',
-    'Live class starting in 15 minutes.',
-    'New announcement from the school.',
-    'Exam results are available now.',
-    'Upcoming event - Science fair on Friday.',
-    'Your assignment is due tomorrow.',
-    'Live class starting in 15 minutes.',
-    'New announcement from the school.',
-    'Exam results are available now.',
-    'Upcoming event - Science fair on Friday.',
-    'Your assignment is due tomorrow.',
-    'Live class starting in 15 minutes.',
-    'New announcement from the school.',
-    'Exam results are available now.',
-    'Upcoming event - Science fair on Friday.',
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +18,14 @@ class NotificationPage extends StatelessWidget {
       ),
       body: Scaffold(
         body: Container(
-            height: double.maxFinite,
+            //height: double.maxFinite,
             child: Stack(children: [
               SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: Image.asset(
                   'assets/loginpage_bg.png',
                   // #Image Url: https://unsplash.com/photos/bOBM8CB4ZC4
-                  fit: BoxFit.fitHeight,
+                  fit: BoxFit.cover,
                 ),
               ),
               BlocBuilder<SubjectBloc, SubjectState>(builder: (context, state) {

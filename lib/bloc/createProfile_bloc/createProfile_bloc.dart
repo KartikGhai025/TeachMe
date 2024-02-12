@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../data_layer/Repositories/user_repository.dart';
 import '../auth_bloc/auth_bloc.dart';
 part 'createProfile_events.dart';
@@ -14,17 +15,17 @@ class CreateProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
 
       try {
         final imageUrl =
-            await userRepository.uploadImage(event.email, event.image);
+            await userRepository.uploadImage(FirebaseAuth.instance.currentUser!.uid, event.image);
 
         await userRepository.addUserProfile(
           event.name,
-          event.email,
-          event.phone,
+       //   event.email,
+      //    event.phone,
           imageUrl,
           event.description,
-          event.age,
+       //   event.age,
           event.classValue,
-          event.city,
+        //  event.city
         );
 
         emit(UserProfileSuccessState());
